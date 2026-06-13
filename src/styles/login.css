@@ -1,0 +1,271 @@
+/* ============================================
+   LOGIN PAGE — TileVista
+   ============================================ */
+
+.login-page {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--tv-bg-page);
+  padding: var(--tv-space-lg) var(--tv-space-md);
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 460px;
+  background-color: var(--tv-bg-card);
+  border: 1px solid var(--tv-border);
+  border-radius: var(--tv-radius-xl);
+  box-shadow: var(--tv-shadow-card);
+  padding: var(--tv-space-lg);
+  box-sizing: border-box;
+}
+
+/* Header */
+.login-header {
+  text-align: center;
+  margin-bottom: var(--tv-space-lg);
+}
+
+.login-divider {
+  margin: 0 auto var(--tv-space-md);
+}
+
+.login-title {
+  font-family: var(--tv-font-display);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  color: var(--tv-text-primary);
+  font-weight: 700;
+  margin-bottom: var(--tv-space-xs);
+}
+
+.login-subtitle {
+  font-family: var(--tv-font-body);
+  font-size: 0.9rem;
+  color: var(--tv-text-muted);
+}
+
+/* Form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tv-space-md);
+}
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.login-label {
+  font-family: var(--tv-font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--tv-text-primary);
+}
+
+.login-input-icon {
+  color: var(--tv-text-muted);
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.login-input-wrapper {
+  position: relative !important; /* CRITICAL: Anchors the absolute positioned eye icon inside the box */
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  background-color: var(--tv-bg-page) !important;
+  border: 1.5px solid var(--tv-border) !important;
+  border-radius: var(--tv-radius-md) !important;
+  transition: border-color 0.2s ease;
+}
+
+.login-input-wrapper:hover,
+.login-input-wrapper[data-focus="true"] {
+  border-color: var(--tv-color-primary) !important;
+}
+
+.login-input {
+  font-family: var(--tv-font-body) !important;
+  color: var(--tv-text-primary) !important;
+  width: 100% !important;
+  flex: 1 !important; /* Ensures the input field expands to fill the entire box width */
+}
+
+.login-eye-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--tv-text-muted);
+  padding: 0;
+  width: 18px;
+  height: 18px;
+  transition: color 0.2s ease;
+}
+
+.login-eye-toggle:hover {
+  color: var(--tv-color-primary);
+}
+
+.login-eye-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Forgot password */
+.login-forgot-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -0.5rem;
+}
+
+.login-forgot-link {
+  font-family: var(--tv-font-body);
+  font-size: 0.82rem;
+  color: var(--tv-color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.login-forgot-link:hover {
+  color: var(--tv-color-primary-hover);
+  text-decoration: underline;
+}
+
+/* Submit button */
+.login-submit-btn {
+  justify-content: center;
+  width: 100%;
+  font-size: 0.95rem;
+  margin-top: var(--tv-space-xs);
+}
+
+/* OR divider */
+.login-or-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--tv-space-sm);
+  margin: var(--tv-space-lg) 0;
+}
+
+.login-or-line {
+  flex: 1;
+  height: 1px;
+  background-color: var(--tv-border);
+}
+
+.login-or-text {
+  font-family: var(--tv-font-body);
+  font-size: 0.78rem;
+  color: var(--tv-text-muted);
+  white-space: nowrap;
+}
+
+/* Social buttons */
+.login-social-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tv-space-sm);
+}
+
+.login-social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.65rem 1.5rem;
+  background-color: var(--tv-bg-page);
+  border: 1.5px solid var(--tv-border);
+  border-radius: var(--tv-radius-md);
+  font-family: var(--tv-font-body);
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--tv-text-primary);
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.login-social-btn:hover {
+  border-color: var(--tv-color-primary-light);
+  background-color: var(--tv-color-primary-muted);
+  transform: translateY(-1px);
+}
+
+/* Register link */
+.login-register-text {
+  text-align: center;
+  font-family: var(--tv-font-body);
+  font-size: 0.88rem;
+  color: var(--tv-text-body);
+  margin-top: var(--tv-space-lg);
+}
+
+.login-register-link {
+  color: var(--tv-color-primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.login-register-link:hover {
+  color: var(--tv-color-primary-hover);
+  text-decoration: underline;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 480px) {
+  .login-page {
+    /* Add small horizontal padding so card doesn't touch the screen edge */
+    padding: var(--tv-space-md) var(--tv-space-sm);
+  }
+
+  .login-card {
+    padding: 1.25rem; /* Tighter padding gives inputs more breathing room */
+    border-radius: var(--tv-radius-lg);
+  }
+
+  .login-title {
+    font-size: 1.5rem; /* Prevents title text clipping */
+  }
+
+  .login-subtitle {
+    font-size: 0.85rem;
+    margin-bottom: var(--tv-space-xs);
+  }
+
+  /* Arrange social buttons side-by-side to save vertical height */
+  .login-social-row {
+    flex-direction: row !important;
+    gap: 0.5rem;
+  }
+
+  .login-social-btn {
+    padding: 0.65rem 0.5rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .login-page {
+    padding: var(--tv-space-xl) 0;
+  }
+}

@@ -1,0 +1,204 @@
+/* ============================================
+   ALL TILES PAGE
+   ============================================ */
+
+.all-tiles-page {
+  min-height: 100vh;
+}
+
+/* ── Page header ── */
+.all-tiles-header {
+  background-color: var(--tv-bg-section);
+  border-bottom: 1px solid var(--tv-border);
+  padding: var(--tv-space-lg) 0;
+}
+
+.all-tiles-header-inner {
+  text-align: center;
+}
+
+.all-tiles-eyebrow {
+  font-family: var(--tv-font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tv-color-primary-light);
+  margin: 0 0 0.5rem;
+}
+
+.all-tiles-heading {
+  font-family: var(--tv-font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--tv-text-primary);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.all-tiles-subtext {
+  font-family: var(--tv-font-body);
+  font-size: 0.95rem;
+  color: var(--tv-text-muted);
+  max-width: 480px;
+  margin: 0.75rem auto 0;
+  line-height: 1.7;
+}
+
+/* ── Body (search + grid) ── */
+.all-tiles-body {
+  padding: var(--tv-space-lg) 0;
+}
+
+/* ── Search bar ── */
+.search-bar-wrap {
+  max-width: 560px;
+  margin: 0 auto var(--tv-space-lg);
+}
+
+.search-bar-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar-icon {
+  position: absolute;
+  left: 14px;
+  z-index: 2;
+  color: var(--tv-text-muted);
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.search-bar-input {
+  width: 100%;
+  padding: 0.75rem 3rem 0.75rem 2.75rem !important;
+  font-family: var(--tv-font-body) !important;
+  font-size: 0.95rem !important;
+  color: var(--tv-text-primary) !important;
+  background-color: var(--tv-bg-card) !important;
+  border: 1.5px solid var(--tv-border) !important;
+  border-radius: var(--tv-radius-md) !important;
+  box-shadow: var(--tv-shadow-card) !important;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease !important;
+  outline: none !important;
+}
+
+.search-bar-input:hover {
+  border-color: var(--tv-color-primary-light) !important;
+}
+
+.search-bar-input:focus,
+.search-bar-input:focus-visible {
+  border-color: var(--tv-color-primary) !important;
+  box-shadow: 0 0 0 3px rgba(139, 111, 71, 0.12) !important;
+}
+
+.search-bar-input::placeholder {
+  color: var(--tv-text-muted) !important;
+}
+
+/* Hide browser default clear button on type=search */
+.search-bar-input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.search-bar-clear {
+  position: absolute;
+  right: 12px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--tv-text-muted);
+  padding: 4px;
+  border-radius: 50%;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.search-bar-clear:hover {
+  background-color: var(--tv-color-primary-muted);
+  color: var(--tv-color-primary);
+}
+
+/* ── Results count ── */
+.tiles-results-count {
+  font-family: var(--tv-font-body);
+  font-size: 0.85rem;
+  color: var(--tv-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+/* ── Tiles grid ── */
+.tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+/* ── Empty state ── */
+.tiles-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--tv-space-xl) var(--tv-space-md);
+  text-align: center;
+  gap: 0.75rem;
+}
+
+.tiles-empty-icon {
+  color: var(--tv-border-strong);
+  opacity: 0.6;
+}
+
+.tiles-empty-heading {
+  font-family: var(--tv-font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--tv-text-primary);
+  margin: 0;
+}
+
+.tiles-empty-subtext {
+  font-family: var(--tv-font-body);
+  font-size: 0.9rem;
+  color: var(--tv-text-muted);
+  margin: 0;
+  max-width: 320px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .tiles-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .tiles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .search-bar-wrap {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .tiles-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,42 @@
+/* ============================================
+   TILE GALLERY HUMOR — Forgot Password
+   ============================================ */
+
+/* Subtle tile-like pattern behind the card */
+.forgot-password-pattern {
+  background-image:
+    /* horizontal lines */
+    repeating-linear-gradient(
+      0deg,
+      var(--tv-border),
+      var(--tv-border) 1px,
+      transparent 1px,
+      transparent 40px
+    ),
+    /* vertical lines */
+    repeating-linear-gradient(
+        90deg,
+        var(--tv-border),
+        var(--tv-border) 1px,
+        transparent 1px,
+        transparent 40px
+      );
+  background-size: 40px 40px;
+  background-position: center;
+}
+
+/* Gentle fade-in for the entire card */
+.forgot-password-card-wrapper {
+  animation: cardPop 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+@keyframes cardPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.97) translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

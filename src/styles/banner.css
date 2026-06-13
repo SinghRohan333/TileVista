@@ -1,0 +1,216 @@
+/* ============================================
+   BANNER / HERO SECTION
+   ============================================ */
+
+.banner-section {
+  position: relative;
+  width: 100%;
+  height: 92vh;
+  min-height: 560px;
+  max-height: 860px;
+  overflow: hidden;
+  background-color: var(--tv-text-primary);
+}
+
+/* ── Swiper container fills the section ── */
+.banner-swiper {
+  width: 100%;
+  height: 100%;
+  position: absolute !important;
+  inset: 0;
+}
+
+/* ── Each slide ── */
+.banner-slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Image wrapper — fills the slide ── */
+.banner-image-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Gradient overlay ── */
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    rgba(61, 43, 31, 0.82) 0%,
+    rgba(61, 43, 31, 0.55) 45%,
+    rgba(61, 43, 31, 0.15) 75%,
+    rgba(61, 43, 31, 0.05) 100%
+  );
+  z-index: 1;
+}
+
+/* ── Hero content sits above everything ── */
+.banner-content {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+}
+
+.banner-content-inner {
+  width: 100%;
+}
+
+/* ── Text block — left aligned, max half width on desktop ── */
+.banner-text-block {
+  max-width: 580px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Eyebrow label */
+.banner-eyebrow {
+  font-family: var(--tv-font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tv-color-primary-light);
+  margin: 0;
+}
+
+/* Main heading */
+.banner-heading {
+  font-family: var(--tv-font-display);
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* Italic "Perfect" — sand gold accent */
+.banner-heading em {
+  font-style: italic;
+  color: var(--tv-color-primary-light);
+}
+
+/* Subtext */
+.banner-subtext {
+  font-family: var(--tv-font-body);
+  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.7;
+  max-width: 460px;
+  margin: 0;
+}
+
+/* CTA button row */
+.banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* Override btn-primary for banner context */
+.banner-cta {
+  font-size: 0.95rem;
+  padding: 0.8rem 2rem;
+  border-radius: var(--tv-radius-md);
+  background-color: var(--tv-color-primary);
+  gap: 0.6rem;
+}
+
+.banner-cta:hover {
+  background-color: var(--tv-color-primary-hover);
+}
+
+.banner-cta-arrow {
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.banner-cta:hover .banner-cta-arrow {
+  transform: translateX(4px);
+}
+
+/* ── Swiper pagination dots ── */
+.banner-swiper .swiper-pagination {
+  bottom: 28px !important;
+  z-index: 20;
+}
+
+.banner-swiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.45);
+  opacity: 1;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.banner-swiper .swiper-pagination-bullet-active {
+  background-color: var(--tv-color-primary-light);
+  transform: scale(1.35);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .banner-section {
+    height: 88vh;
+    min-height: 500px;
+  }
+
+  /* On mobile, overlay covers more of the image for readability */
+  .banner-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(61, 43, 31, 0.3) 0%,
+      rgba(61, 43, 31, 0.75) 40%,
+      rgba(61, 43, 31, 0.88) 100%
+    );
+  }
+
+  /* Content shifts to bottom on mobile */
+  .banner-content {
+    align-items: flex-end;
+    padding-bottom: 4rem;
+  }
+
+  .banner-text-block {
+    max-width: 100%;
+    gap: 1rem;
+  }
+
+  .banner-heading {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+  }
+
+  .banner-subtext {
+    font-size: 0.9rem;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-section {
+    height: 85vh;
+  }
+
+  .banner-cta {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .banner-actions {
+    flex-direction: column;
+  }
+}

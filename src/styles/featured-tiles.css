@@ -1,0 +1,67 @@
+/* ============================================
+   FEATURED TILES SECTION
+   ============================================ */
+
+.featured-section {
+  background-color: var(--tv-bg-page);
+}
+
+/* ── Section header ── */
+.featured-header {
+  text-align: center;
+  margin-bottom: var(--tv-space-lg);
+}
+
+.featured-eyebrow {
+  font-family: var(--tv-font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tv-color-primary-light);
+  margin: 0 0 0.6rem;
+}
+
+.featured-subtext {
+  font-family: var(--tv-font-body);
+  font-size: 0.95rem;
+  color: var(--tv-text-muted);
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Center the divider under the heading */
+.featured-header .divider {
+  margin: 0.5rem auto var(--tv-space-sm);
+}
+
+/* ── 4-column grid ── */
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+/* ── Bottom CTA ── */
+.featured-cta-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--tv-space-lg);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .featured-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+}

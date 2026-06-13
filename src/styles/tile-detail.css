@@ -1,0 +1,265 @@
+/* ============================================
+   TILE DETAIL PAGE
+   ============================================ */
+
+.tile-detail-page {
+  min-height: 100vh;
+  background-color: var(--tv-bg-page);
+}
+
+.tile-detail-wrapper {
+  padding: var(--tv-space-lg) 0 var(--tv-space-xl);
+}
+
+/* ── Back link ── */
+.tile-detail-back {
+  margin-bottom: var(--tv-space-md);
+}
+
+.tile-detail-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--tv-font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--tv-text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.tile-detail-back-link:hover {
+  color: var(--tv-color-primary);
+}
+
+/* ── Two column grid ── */
+.tile-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--tv-space-lg);
+  align-items: start;
+}
+
+/* ── Left: Image panel ── */
+.tile-detail-image-panel {
+  position: sticky;
+  top: 88px; /* clears the navbar height */
+}
+
+.tile-detail-image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--tv-radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--tv-border);
+  box-shadow: var(--tv-shadow-card-hover);
+}
+
+/* ── Right: Info panel ── */
+.tile-detail-info-panel {
+  display: flex;
+  flex-direction: column;
+  padding: var(--tv-space-sm) 0;
+}
+
+/* Top row — category + badge */
+.tile-detail-top-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: var(--tv-space-sm);
+}
+
+.tile-detail-category {
+  font-family: var(--tv-font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tv-color-primary-light);
+}
+
+/* Title */
+.tile-detail-title {
+  font-family: var(--tv-font-display);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 800;
+  color: var(--tv-text-primary);
+  line-height: 1.15;
+  margin: 0 0 0.6rem;
+  letter-spacing: -0.02em;
+}
+
+/* Creator */
+.tile-detail-creator {
+  font-family: var(--tv-font-body);
+  font-size: 0.9rem;
+  color: var(--tv-text-muted);
+  margin: 0 0 var(--tv-space-sm);
+}
+
+.tile-detail-label {
+  color: var(--tv-text-muted);
+  font-weight: 400;
+}
+
+/* Price */
+.tile-detail-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  margin-bottom: var(--tv-space-md);
+}
+
+.tile-detail-price {
+  font-family: var(--tv-font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--tv-color-primary);
+}
+
+.tile-detail-currency {
+  font-family: var(--tv-font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--tv-text-muted);
+}
+
+/* Divider */
+.tile-detail-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--tv-border);
+  margin: var(--tv-space-md) 0;
+}
+
+/* Description */
+.tile-detail-description {
+  font-family: var(--tv-font-body);
+  font-size: 0.95rem;
+  color: var(--tv-text-body);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* Section label */
+.tile-detail-section-label {
+  font-family: var(--tv-font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tv-text-muted);
+  margin: 0 0 0.75rem;
+}
+
+/* Specifications */
+.tile-detail-specs {
+  margin-bottom: 0;
+}
+
+.tile-detail-spec-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tile-detail-spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--tv-border);
+}
+
+.tile-detail-spec-row:last-child {
+  border-bottom: none;
+}
+
+.tile-detail-spec-key {
+  font-family: var(--tv-font-body);
+  font-size: 0.875rem;
+  color: var(--tv-text-muted);
+  font-weight: 400;
+}
+
+.tile-detail-spec-val {
+  font-family: var(--tv-font-body);
+  font-size: 0.875rem;
+  color: var(--tv-text-primary);
+  font-weight: 500;
+  text-align: right;
+}
+
+/* Tags */
+.tile-detail-tags {
+  margin-bottom: 0;
+}
+
+.tile-detail-tags-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tile-detail-tag {
+  display: inline-block;
+  font-family: var(--tv-font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--tv-color-primary);
+  background-color: var(--tv-color-primary-muted);
+  border: 1px solid var(--tv-border);
+  padding: 4px 14px;
+  border-radius: 99px;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.tile-detail-tag:hover {
+  background-color: var(--tv-color-primary);
+  color: #ffffff;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Stack to single column on mobile */
+  .tile-detail-grid {
+    grid-template-columns: 1fr;
+    gap: var(--tv-space-md);
+  }
+
+  /* Image is no longer sticky on mobile */
+  .tile-detail-image-panel {
+    position: static;
+  }
+
+  /* 4:3 ratio on mobile — not too tall */
+  .tile-detail-image-wrap {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--tv-radius-lg);
+  }
+
+  .tile-detail-title {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  .tile-detail-price {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tile-detail-wrapper {
+    padding: var(--tv-space-md) 0 var(--tv-space-lg);
+  }
+
+  .tile-detail-image-wrap {
+    border-radius: var(--tv-radius-md);
+  }
+}

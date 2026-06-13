@@ -1,0 +1,207 @@
+/* ============================================
+   FOOTER — TileVista
+   ============================================ */
+
+.footer {
+  background-color: var(--tv-bg-section);
+  border-top: 1px solid var(--tv-border);
+  margin-top: auto;
+}
+
+.footer-container {
+  padding-top: var(--tv-space-xl);
+  padding-bottom: var(--tv-space-md);
+}
+
+/* Top grid */
+.footer-top {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--tv-space-lg);
+}
+
+/* Brand */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tv-space-sm);
+}
+
+.footer-logo {
+  font-family: var(--tv-font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--tv-text-primary);
+}
+
+.footer-tagline {
+  font-family: var(--tv-font-body);
+  font-size: 0.9rem;
+  color: var(--tv-text-body);
+  max-width: 320px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: var(--tv-space-xs);
+  margin-top: var(--tv-space-xs);
+}
+
+.footer-social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--tv-radius-md);
+  background-color: var(--tv-bg-card);
+  border: 1px solid var(--tv-border);
+  color: var(--tv-color-primary);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.footer-social-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.footer-social-icon:hover {
+  background-color: var(--tv-color-primary);
+  border-color: var(--tv-color-primary);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Columns */
+.footer-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-col-title {
+  font-family: var(--tv-font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--tv-text-primary);
+  margin-bottom: var(--tv-space-sm);
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-link {
+  font-family: var(--tv-font-body);
+  font-size: 0.9rem;
+  color: var(--tv-text-body);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--tv-color-primary);
+}
+
+/* Contact list */
+.footer-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-family: var(--tv-font-body);
+  font-size: 0.9rem;
+  color: var(--tv-text-body);
+}
+
+.footer-contact-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  color: var(--tv-color-primary);
+}
+
+/* Divider */
+.footer-divider {
+  height: 1px;
+  background-color: var(--tv-border);
+  margin: var(--tv-space-lg) 0 var(--tv-space-md);
+}
+
+/* Bottom */
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--tv-space-sm);
+  flex-wrap: wrap;
+}
+
+.footer-copyright,
+.footer-credit {
+  font-family: var(--tv-font-body);
+  font-size: 0.82rem;
+  color: var(--tv-text-muted);
+}
+
+.footer-credit {
+  font-style: italic;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .footer-top {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--tv-space-lg) var(--tv-space-md);
+  }
+
+  .footer-brand {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-container {
+    padding-top: var(--tv-space-lg);
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: var(--tv-space-lg);
+  }
+
+  .footer-brand {
+    grid-column: span 1;
+  }
+
+  .footer-tagline {
+    max-width: 100%;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 0.4rem;
+  }
+}

@@ -1,26 +1,337 @@
 @import "tailwindcss";
+@import "@heroui/styles";
+
+/* ============================================
+   DESIGN TOKENS — for plain CSS usage
+   ============================================ */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Fonts */
+  --tv-font-display: var(--font-display), Georgia, serif;
+  --tv-font-body: var(--font-body), system-ui, sans-serif;
+
+  /* Brand Colors */
+  --tv-color-primary: #8b6f47;
+  --tv-color-primary-hover: #7a5f3a;
+  --tv-color-primary-light: #c4a265;
+  --tv-color-primary-muted: #ede4d8;
+
+  /* Backgrounds */
+  --tv-bg-page: #f5efe6;
+  --tv-bg-card: #ffffff;
+  --tv-bg-section: #ede4d8;
+
+  /* Text */
+  --tv-text-primary: #3d2b1f;
+  --tv-text-body: #5c4a38;
+  --tv-text-muted: #9c8370;
+
+  /* Semantic */
+  --tv-color-success: #6b8f71;
+  --tv-color-success-bg: #eaf2eb;
+  --tv-color-danger: #c0392b;
+  --tv-color-danger-bg: #fdecea;
+
+  /* Borders */
+  --tv-border: #ddd0c0;
+  --tv-border-strong: #c4a265;
+
+  /* Spacing Scale */
+  --tv-space-xs: 0.5rem;
+  --tv-space-sm: 1rem;
+  --tv-space-md: 1.5rem;
+  --tv-space-lg: 2.5rem;
+  --tv-space-xl: 4rem;
+
+  /* Border radius */
+  --tv-radius-sm: 6px;
+  --tv-radius-md: 10px;
+  --tv-radius-lg: 16px;
+  --tv-radius-xl: 24px;
+
+  /* Shadows */
+  --tv-shadow-card: 0 2px 12px rgba(61, 43, 31, 0.08);
+  --tv-shadow-card-hover: 0 6px 24px rgba(61, 43, 31, 0.14);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  /* Fonts — pulls from Next.js injected CSS variables */
+  --font-family-display: var(--tv-font-display), Georgia, serif;
+  --font-family-body: var(--tv-font-body), system-ui, sans-serif;
+
+  /* Brand colors — available as Tailwind utilities like bg-tv-primary */
+
+  /* Brand Colors */
+  --color-tv-primary: var(--tv-color-primary);
+  /* Terra Brown — buttons, links, accents */
+  --color-tv-primary-hover: var(--tv-color-primary-hover); /* Darker on hover */
+  --color-tv-primary-light: var(--tv-color-primary-light);
+  /* Sand Gold — highlights */
+  --color-tv-primary-muted: var(
+    --tv-color-primary-muted
+  ); /* Linen — card surfaces */
+
+  /* Backgrounds */
+  --color-tv-bg-page: var(--tv-bg-page); /* Cream White — main page bg */
+  --color-tv-bg-card: var(--tv-bg-card); /* Pure white for cards */
+  --color-tv-bg-section: var(
+    --tv-bg-section
+  ); /* Linen — alternate section bg */
+
+  /* Text */
+  --color-tv-text-primary: var(
+    --tv-text-primary
+  ); /* Deep Walnut — headings, strong text */
+  --color-tv-text-body: var(
+    --tv-text-body
+  ); /* Softer brown for body paragraphs */
+  --color-tv-text-muted: var(
+    --tv-text-muted
+  ); /* Muted — captions, secondary labels */
+
+  /* Borders */
+  --color-tv-border: var(--tv-border); /* Default border color */
+  --color-tv-border-strong: var(
+    --tv-border-strong
+  ); /* Sand Gold — highlighted borders */
+
+  /* Semantic */
+  --color-tv-success: var(--tv-color-success); /* Sage Green — in-stock badge */
+  --color-tv-success-bg: var(
+    --tv-color-success-bg
+  ); /* Light green background */
+  --color-tv-danger: var(--tv-color-danger); /* Out-of-stock / errors */
+  --color-tv-danger-bg: var(--tv-color-danger-bg); /* Light red background */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--tv-font-body);
+  background-color: var(--tv-bg-page);
+  color: var(--tv-text-body);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--tv-font-display);
+  color: var(--tv-text-primary);
+  line-height: 1.2;
+}
+
+/* ============================================
+   LAYOUT UTILITIES
+   ============================================ */
+
+.page-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section-padding {
+  padding-top: var(--tv-space-xl);
+  padding-bottom: var(--tv-space-xl);
+}
+
+/* ============================================
+   COMPONENT UTILITIES
+   ============================================ */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--tv-color-primary);
+  color: #ffffff;
+  font-family: var(--tv-font-body);
+  font-weight: 500;
+  padding: 0.65rem 1.5rem;
+  border-radius: var(--tv-radius-md);
+  border: none;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--tv-color-primary-hover);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: var(--tv-color-primary);
+  font-family: var(--tv-font-body);
+  font-weight: 500;
+  padding: 0.65rem 1.5rem;
+  border-radius: var(--tv-radius-md);
+  border: 1.5px solid var(--tv-color-primary);
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  background-color: var(--tv-color-primary);
+  color: #ffffff;
+}
+
+.tile-card {
+  background-color: var(--tv-bg-card);
+  border: 1px solid var(--tv-border);
+  border-radius: var(--tv-radius-lg);
+  overflow: hidden;
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.tile-card:hover {
+  box-shadow: var(--tv-shadow-card-hover);
+  transform: translateY(-3px);
+}
+
+.tile-image-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.tile-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.tile-card:hover .tile-image-wrap img {
+  transform: scale(1.04);
+}
+
+.badge-instock {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 2px 10px;
+  border-radius: 99px;
+  background-color: var(--tv-color-success-bg);
+  color: var(--tv-color-success);
+}
+
+.badge-outofstock {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 2px 10px;
+  border-radius: 99px;
+  background-color: var(--tv-color-danger-bg);
+  color: var(--tv-color-danger);
+}
+
+.section-heading {
+  font-family: var(--tv-font-display);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  color: var(--tv-text-primary);
+  font-weight: 700;
+  margin-bottom: var(--tv-space-sm);
+}
+
+.divider {
+  width: 60px;
+  height: 3px;
+  background-color: var(--tv-color-primary);
+  border-radius: 2px;
+  margin-bottom: var(--tv-space-md);
+}
+
+/* ============================================
+   SKELETON LOADER
+   ============================================ */
+
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.skeleton {
+  background-color: var(--tv-color-primary-muted);
+  border-radius: var(--tv-radius-sm);
+  animation: skeleton-pulse 1.6s ease-in-out infinite;
+}
+
+.skeleton-eyebrow {
+  height: 12px;
+  width: 120px;
+  margin: 0 auto 0.6rem;
+}
+
+.skeleton-heading {
+  height: 36px;
+  width: 220px;
+  margin: 0 auto 0.5rem;
+  border-radius: var(--tv-radius-md);
+}
+
+.skeleton-subtext {
+  height: 14px;
+  width: 340px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.skeleton-card {
+  pointer-events: none;
+}
+
+.skeleton-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 0;
+}
+
+.skeleton-label {
+  height: 10px;
+  width: 60px;
+}
+
+.skeleton-title {
+  height: 18px;
+  width: 75%;
+  border-radius: var(--tv-radius-sm);
+}
+
+.skeleton-meta {
+  height: 10px;
+  width: 50%;
+}
+
+.skeleton-footer {
+  height: 36px;
+  width: 100%;
+  margin-top: 0.75rem;
+  border-radius: var(--tv-radius-sm);
 }
