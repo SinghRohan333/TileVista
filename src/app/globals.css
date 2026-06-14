@@ -335,3 +335,89 @@ h4 {
   margin-top: 0.75rem;
   border-radius: var(--tv-radius-sm);
 }
+
+/* ============================================
+   REACT TOASTIFY — TILEVISTA THEME
+   ============================================ */
+
+:root {
+  --toastify-font-family: var(--tv-font-body);
+  --toastify-color-light: #ffffff;
+  --toastify-text-color-light: var(--tv-text-primary);
+
+  /* Success */
+  --toastify-color-success: var(--tv-color-success);
+  --toastify-icon-color-success: var(--tv-color-success);
+
+  /* Error */
+  --toastify-color-error: var(--tv-color-danger);
+  --toastify-icon-color-error: var(--tv-color-danger);
+
+  /* Info */
+  --toastify-color-info: var(--tv-color-primary);
+  --toastify-icon-color-info: var(--tv-color-primary);
+
+  /* Progress bar */
+  --toastify-color-progress-success: var(--tv-color-success);
+  --toastify-color-progress-error: var(--tv-color-danger);
+  --toastify-color-progress-info: var(--tv-color-primary);
+
+  /* Close button */
+  --toastify-color-dark: var(--tv-text-muted);
+}
+
+/* Toast container */
+.Toastify__toast {
+  font-family: var(--tv-font-body) !important;
+  border-radius: var(--tv-radius-md) !important;
+  border: 1px solid var(--tv-border) !important;
+  box-shadow: var(--tv-shadow-card-hover) !important;
+  padding: 14px 16px !important;
+}
+
+/* Success toast — left border accent */
+.Toastify__toast--success {
+  border-left: 4px solid var(--tv-color-success) !important;
+}
+
+/* Error toast — left border accent */
+.Toastify__toast--error {
+  border-left: 4px solid var(--tv-color-danger) !important;
+}
+
+/* Info toast */
+.Toastify__toast--info {
+  border-left: 4px solid var(--tv-color-primary) !important;
+}
+
+/* Toast title/body text */
+.Toastify__toast-body {
+  font-family: var(--tv-font-body) !important;
+  font-size: 0.875rem !important;
+  color: var(--tv-text-primary) !important;
+  line-height: 1.5 !important;
+}
+
+/* Progress bar */
+.Toastify__progress-bar--success {
+  background: var(--tv-color-success) !important;
+}
+
+.Toastify__progress-bar--error {
+  background: var(--tv-color-danger) !important;
+}
+
+.Toastify__progress-bar--info {
+  background: var(--tv-color-primary) !important;
+}
+
+/* Close button */
+.Toastify__close-button {
+  color: var(--tv-text-muted) !important;
+  opacity: 0.7;
+}
+
+.Toastify__close-button:hover {
+  opacity: 1;
+  color: var(--tv-text-primary) !important;
+}

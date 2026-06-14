@@ -5,10 +5,45 @@ import Link from "next/link";
 import { Button, InputGroup, Label, TextField } from "@heroui/react";
 import { Eye, EyeSlash, Envelope, LockFill } from "@gravity-ui/icons";
 import "@/styles/login.css";
+import { useForm } from "react-hook-form";
+import { authClient } from "@/libs/auth-client";
+import { toast } from "react-toastify";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const handleLoginData = async (formData) => {
+    // console.log(formData);
+    const { email, password } = formData;
+    setIsLoading(true);
+    const { data, error } = await authClient.signIn.email({
+      email,
+      password,
+    });
+
+    setIsLoading(false);
+
+    if (error) {
+      toast.error(error.message || "Login failed. Please try again.");
+      return;
+    }
+    if (data) {
+      toast.success("Welcome back to TileVista!");
+      const redirect = searchParams.get("redirect");
+      router.push(redirect || "/");
+    }
+  };
   return (
     <main className="login-page">
       <div className="page-container login-container">
@@ -23,7 +58,7 @@ const Login = () => {
           </div>
 
           {/* Form */}
-          <form className="login-form">
+          <form className="login-form" onSubmit={handleSubmit(handleLoginData)}>
             <TextField isRequired name="email" className="login-field">
               <Label className="login-label">Email Address</Label>
               <InputGroup className="login-input-wrapper">
@@ -35,11 +70,17 @@ const Login = () => {
                   type="email"
                   placeholder="you@example.com"
                   className="login-input"
+                  {...register("email")}
                 />
               </InputGroup>
             </TextField>
 
-            <TextField isRequired name="password" className="login-field">
+            <TextField
+              isRequired
+              name="password"
+              className="login-field"
+              isInvalid={!!errors.password}
+            >
               <Label className="login-label">Password</Label>
               <InputGroup className="login-input-wrapper">
                 <InputGroup.Prefix>
@@ -50,6 +91,21 @@ const Login = () => {
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
                   className="login-input"
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: {
+                      value: 8,
+                      message: "Password must be at least 8 characters long",
+                    },
+                    validate: {
+                      hasUppercase: (value) =>
+                        /[A-Z]/.test(value) ||
+                        "Password must contain at least one uppercase letter",
+                      hasNumber: (value) =>
+                        /\d/.test(value) ||
+                        "Password must contain at least one number",
+                    },
+                  })}
                 />
                 <InputGroup.Suffix>
                   <button
@@ -64,6 +120,13 @@ const Login = () => {
                   </button>
                 </InputGroup.Suffix>
               </InputGroup>
+
+              {/* Error Message Span */}
+              {errors.password && (
+                <span className="login-error-message">
+                  {errors.password.message?.toString()}
+                </span>
+              )}
             </TextField>
 
             <div className="login-forgot-row">
@@ -72,8 +135,12 @@ const Login = () => {
               </Link>
             </div>
 
-            <Button type="submit" className="btn-primary login-submit-btn">
-              Log In
+            <Button
+              type="submit"
+              className="btn-primary login-submit-btn"
+              isDisabled={isLoading}
+            >
+              {isLoading ? "Signing In..." : "Log In"}
             </Button>
           </form>
 
@@ -138,7 +205,10 @@ const Login = () => {
           {/* Register link */}
           <p className="login-register-text">
             Don&apos;t have an account?{" "}
-            <Link href="/register" className="login-register-link">
+            <Link
+              href={`/register${searchParams.get("redirect") ? `?redirect=${searchParams.get("redirect")}` : ""}`}
+              className="login-register-link"
+            >
               Create one
             </Link>
           </p>

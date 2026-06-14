@@ -228,6 +228,20 @@
   text-decoration: underline;
 }
 
+/* Optional field label */
+.login-optional {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--tv-text-muted);
+  margin-left: 4px;
+}
+
+/* Submit button loading state */
+.login-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 /* ============================================
    RESPONSIVE
    ============================================ */

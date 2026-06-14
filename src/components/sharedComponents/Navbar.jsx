@@ -1,11 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@heroui/react";
 import { Bars, Xmark } from "@gravity-ui/icons";
 import "@/styles/navbar.css";
+import { authClient } from "@/libs/auth-client";
+import { toast } from "react-toastify";
+import Image from "next/image";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -16,10 +19,17 @@ const navLinks = [
 const Navbar = () => {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const router = useRouter();
+  const { data: session } = authClient.useSession();
+  // console.log(session);
   const isActive = (href) => {
     if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
+  };
+  const handleLogout = async () => {
+    await authClient.signOut();
+    toast.success("You have been logged out.");
+    router.push("/");
   };
   return (
     <header className="navbar-wrapper">
@@ -81,11 +91,40 @@ const Navbar = () => {
 
         {/* ── RIGHT: Auth Button (desktop) ── */}
         <div className="navbar-auth">
-          <Link href="/login">
-            <Button className="navbar-login-btn" variant="bordered" size="sm">
-              Login
-            </Button>
-          </Link>
+          {session ? (
+            <div className="navbar-user-row">
+              <Link href="/my-profile" className="navbar-user-name">
+                {session?.user?.image ? (
+                  <Image
+                    src={session?.user?.image}
+                    alt={session?.user?.name}
+                    width={32}
+                    height={32}
+                    className="navbar-user-avatar"
+                  />
+                ) : (
+                  <span className="navbar-user-placeholder">
+                    {session?.user.name?.charAt(0).toUpperCase()}
+                  </span>
+                )}
+                <span>{session?.user?.name}</span>
+              </Link>
+              <Button
+                className="navbar-login-btn"
+                variant="bordered"
+                size="sm"
+                onClick={handleLogout}
+              >
+                Logout
+              </Button>
+            </div>
+          ) : (
+            <Link href="/login">
+              <Button className="navbar-login-btn" variant="bordered" size="sm">
+                Login
+              </Button>
+            </Link>
+          )}
         </div>
 
         {/* ── Hamburger (mobile) ── */}
@@ -119,16 +158,21 @@ const Navbar = () => {
             </Link>
           ))}
           <div className="navbar-mobile-divider" />
-          <Link href="/login" onClick={() => setMenuOpen(false)}>
+          {session ? (
             <Button
-              className="navbar-login-btn"
-              variant="bordered"
-              size="sm"
-              fullWidth
+              className="navbar-login-btn navbar-mobile-logout"
+              onClick={() => {
+                handleLogout();
+                setMenuOpen(false);
+              }}
             >
-              Login
+              Logout
             </Button>
-          </Link>
+          ) : (
+            <Link href="/login" onClick={() => setMenuOpen(false)}>
+              <Button className="navbar-login-btn">Login</Button>
+            </Link>
+          )}
         </nav>
       </div>
     </header>

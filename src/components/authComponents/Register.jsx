@@ -12,9 +12,47 @@ import {
   Link as LinkIcon,
 } from "@gravity-ui/icons";
 import "@/styles/login.css";
+import { useForm } from "react-hook-form";
+import { authClient } from "@/libs/auth-client";
+import { toast } from "react-toastify";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const handleRegisterData = async (formData) => {
+    // console.log(formData);
+    const { name, email, image, password } = formData;
+    setIsLoading(true);
+    const { data, error } = await authClient.signUp.email({
+      name,
+      email,
+      image,
+      password,
+    });
+
+    setIsLoading(false);
+
+    if (error) {
+      toast.error(error.message || "Registration failed. Please try again.");
+      return;
+    }
+    if (data) {
+      toast.success("Account created successfully! Welcome to TileVista.");
+      const redirect = searchParams.get("redirect");
+      router.push(redirect || "/");
+    }
+  };
 
   return (
     <main className="login-page">
@@ -30,7 +68,10 @@ const Register = () => {
           </div>
 
           {/* Form */}
-          <form className="login-form">
+          <form
+            className="login-form"
+            onSubmit={handleSubmit(handleRegisterData)}
+          >
             <TextField isRequired name="name" className="login-field">
               <Label className="login-label">Full Name</Label>
               <InputGroup className="login-input-wrapper">
@@ -42,6 +83,7 @@ const Register = () => {
                   type="text"
                   placeholder="John Doe"
                   className="login-input"
+                  {...register("name")}
                 />
               </InputGroup>
             </TextField>
@@ -57,6 +99,7 @@ const Register = () => {
                   type="email"
                   placeholder="you@example.com"
                   className="login-input"
+                  {...register("email")}
                 />
               </InputGroup>
             </TextField>
@@ -72,11 +115,17 @@ const Register = () => {
                   type="url"
                   placeholder="https://example.com/photo.jpg"
                   className="login-input"
+                  {...register("image")}
                 />
               </InputGroup>
             </TextField>
 
-            <TextField isRequired name="password" className="login-field">
+            <TextField
+              isRequired
+              name="password"
+              className="login-field"
+              isInvalid={!!errors.password}
+            >
               <Label className="login-label">Password</Label>
               <InputGroup className="login-input-wrapper">
                 <InputGroup.Prefix>
@@ -87,6 +136,21 @@ const Register = () => {
                   type={showPassword ? "text" : "password"}
                   placeholder="Create a password"
                   className="login-input"
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: {
+                      value: 8,
+                      message: "Password must be at least 8 characters long",
+                    },
+                    validate: {
+                      hasUppercase: (value) =>
+                        /[A-Z]/.test(value) ||
+                        "Password must contain at least one uppercase letter",
+                      hasNumber: (value) =>
+                        /\d/.test(value) ||
+                        "Password must contain at least one number",
+                    },
+                  })}
                 />
                 <InputGroup.Suffix>
                   <button
@@ -101,10 +165,21 @@ const Register = () => {
                   </button>
                 </InputGroup.Suffix>
               </InputGroup>
+
+              {/* Error Message Span */}
+              {errors.password && (
+                <span className="login-error-message">
+                  {errors.password.message?.toString()}
+                </span>
+              )}
             </TextField>
 
-            <Button type="submit" className="btn-primary login-submit-btn">
-              Register
+            <Button
+              type="submit"
+              className="btn-primary login-submit-btn"
+              isDisabled={isLoading}
+            >
+              {isLoading ? "Creating Account..." : "Register"}
             </Button>
           </form>
 

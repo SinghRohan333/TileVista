@@ -91,6 +91,7 @@
   color: var(--tv-color-primary) !important;
   border-color: var(--tv-color-primary) !important;
   border-radius: var(--tv-radius-md) !important;
+  background-color: transparent !important;
   transition:
     background-color 0.2s ease,
     color 0.2s ease !important;
@@ -156,6 +157,60 @@
 
 .navbar-mobile-divider {
   height: 0.75rem;
+}
+/* User row — avatar + name + logout */
+.navbar-user-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.navbar-user-name {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--tv-font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--tv-text-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.navbar-user-name:hover {
+  color: var(--tv-color-primary);
+}
+
+.navbar-user-avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--tv-border);
+}
+
+/* Fallback initial circle when no image */
+.navbar-user-placeholder {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--tv-color-primary);
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Mobile logout button */
+.navbar-mobile-logout {
+  width: 100%;
+  text-align: center;
+  padding: 0.6rem;
+  border-radius: var(--tv-radius-md);
+  cursor: pointer;
+  font-family: var(--tv-font-body);
+  font-size: 0.9rem;
 }
 
 /* Responsive breakpoint */
