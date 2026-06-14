@@ -43,7 +43,7 @@ const Login = () => {
     if (data) {
       toast.success("Welcome back to TileVista!");
       const redirect = searchParams.get("redirect");
-      router.push(redirect || "/");
+      window.location.href = redirect || "/";
     }
   };
 
