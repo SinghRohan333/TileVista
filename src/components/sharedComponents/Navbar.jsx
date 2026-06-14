@@ -31,6 +31,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     setIsLoggingOut(true);
     await authClient.signOut();
+    setIsLoggingOut(false);
     toast.success("You have been logged out.");
     router.push("/");
   };

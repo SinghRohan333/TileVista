@@ -271,7 +271,10 @@ const Register = () => {
           {/* Login link */}
           <p className="login-register-text">
             Already have an account?{" "}
-            <Link href="/login" className="login-register-link">
+            <Link
+              href={`/login${searchParams.get("redirect") ? `?redirect=${searchParams.get("redirect")}` : ""}`}
+              className="login-register-link"
+            >
               Sign in
             </Link>
           </p>
