@@ -13,6 +13,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -45,9 +46,15 @@ const Login = () => {
     }
   };
   const handleGoogleLogin = async () => {
-    const data = await authClient.signIn.social({
+    setIsGoogleLoading(true);
+    const { data, error } = await authClient.signIn.social({
       provider: "google",
+      callbackURL: searchParams.get("redirect") || "/",
     });
+    if (error) {
+      toast.error(error.message || "Google login failed. Please try again.");
+      setIsGoogleLoading(false);
+    }
   };
   return (
     <main className="login-page">
@@ -162,6 +169,7 @@ const Login = () => {
               type="button"
               className="login-social-btn"
               onClick={handleGoogleLogin}
+              disabled={isGoogleLoading}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -186,7 +194,7 @@ const Login = () => {
                   d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.43-3.43C17.95 1.19 15.24 0 12 0 7.41 0 3.31 2.12 1.32 5.54l4.05 3.15c.96-2.85 3.59-4.94 6.68-4.94z"
                 />
               </svg>
-              <span>Google</span>
+              <span>{isGoogleLoading ? "Connecting..." : "Google"}</span>
             </button>
 
             <button
