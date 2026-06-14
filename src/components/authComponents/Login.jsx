@@ -45,6 +45,7 @@ const Login = () => {
       router.push(redirect || "/");
     }
   };
+
   const handleGoogleLogin = async () => {
     setIsGoogleLoading(true);
     const { data, error } = await authClient.signIn.social({
