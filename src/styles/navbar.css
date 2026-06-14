@@ -213,6 +213,20 @@
   font-size: 0.9rem;
 }
 
+/* Auth skeleton — shown while session is resolving */
+.navbar-auth-skeleton {
+  width: 140px;
+  height: 32px;
+  border-radius: var(--tv-radius-md);
+  background-color: var(--tv-color-primary-muted);
+  animation: skeleton-pulse 1.6s ease-in-out infinite;
+}
+
+.navbar-auth-skeleton--mobile {
+  width: 100%;
+  height: 36px;
+}
+
 /* Responsive breakpoint */
 @media (max-width: 768px) {
   .navbar-links,

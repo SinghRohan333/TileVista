@@ -20,7 +20,7 @@ const Navbar = () => {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
-  const { data: session } = authClient.useSession();
+  const { data: session, isPending } = authClient.useSession();
   // console.log(session);
   const isActive = (href) => {
     if (href === "/") return pathname === "/";
@@ -91,7 +91,9 @@ const Navbar = () => {
 
         {/* ── RIGHT: Auth Button (desktop) ── */}
         <div className="navbar-auth">
-          {session ? (
+          {isPending ? (
+            <div className="navbar-auth-skeleton" />
+          ) : session ? (
             <div className="navbar-user-row">
               <Link href="/my-profile" className="navbar-user-name">
                 {session?.user?.image ? (
@@ -158,7 +160,9 @@ const Navbar = () => {
             </Link>
           ))}
           <div className="navbar-mobile-divider" />
-          {session ? (
+          {isPending ? (
+            <div className="navbar-auth-skeleton navbar-auth-skeleton--mobile" />
+          ) : session ? (
             <Button
               className="navbar-login-btn navbar-mobile-logout"
               onClick={() => {
