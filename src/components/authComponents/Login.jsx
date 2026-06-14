@@ -44,6 +44,11 @@ const Login = () => {
       router.push(redirect || "/");
     }
   };
+  const handleGoogleLogin = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+  };
   return (
     <main className="login-page">
       <div className="page-container login-container">
@@ -156,7 +161,7 @@ const Login = () => {
             <button
               type="button"
               className="login-social-btn"
-              onClick={() => console.log("Google login")}
+              onClick={handleGoogleLogin}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
