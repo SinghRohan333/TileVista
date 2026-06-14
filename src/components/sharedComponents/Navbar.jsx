@@ -17,6 +17,8 @@ const navLinks = [
 ];
 
 const Navbar = () => {
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false);
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
@@ -27,6 +29,7 @@ const Navbar = () => {
     return pathname.startsWith(href);
   };
   const handleLogout = async () => {
+    setIsLoggingOut(true);
     await authClient.signOut();
     toast.success("You have been logged out.");
     router.push("/");
@@ -116,14 +119,21 @@ const Navbar = () => {
                 variant="bordered"
                 size="sm"
                 onClick={handleLogout}
+                disabled={isLoggingOut}
               >
-                Logout
+                {isLoggingOut ? "Logging out..." : "Logout"}
               </Button>
             </div>
           ) : (
             <Link href="/login">
-              <Button className="navbar-login-btn" variant="bordered" size="sm">
-                Login
+              <Button
+                className="navbar-login-btn"
+                variant="bordered"
+                size="sm"
+                onClick={() => setIsNavigating(true)}
+                disabled={isNavigating}
+              >
+                {isNavigating ? "Loading..." : "Login"}
               </Button>
             </Link>
           )}
@@ -169,12 +179,19 @@ const Navbar = () => {
                 handleLogout();
                 setMenuOpen(false);
               }}
+              disabled={isLoggingOut}
             >
-              Logout
+              {isLoggingOut ? "Logging out..." : "Logout"}
             </Button>
           ) : (
             <Link href="/login" onClick={() => setMenuOpen(false)}>
-              <Button className="navbar-login-btn">Login</Button>
+              <Button
+                className="navbar-login-btn"
+                onClick={() => setIsNavigating(true)}
+                disabled={isNavigating}
+              >
+                {isNavigating ? "Loading..." : "Login"}
+              </Button>
             </Link>
           )}
         </nav>
