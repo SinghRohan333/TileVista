@@ -52,7 +52,7 @@ const Register = () => {
     if (data) {
       toast.success("Account created successfully! Welcome to TileVista.");
       const redirect = searchParams.get("redirect");
-      router.push(redirect || "/");
+      window.location.href = redirect || "/";
     }
   };
 
