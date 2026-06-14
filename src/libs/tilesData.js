@@ -1,5 +1,5 @@
 export const getAllTilesData = async () => {
-  const res = await fetch("http://localhost:5000/tiles", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tiles`, {
     cache: "no-store",
   });
   if (!res.ok) {
@@ -10,9 +10,12 @@ export const getAllTilesData = async () => {
 };
 
 export const getFeaturedTilesData = async () => {
-  const res = await fetch("http://localhost:5000/tiles?featured=true", {
-    cache: "no-store",
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/tiles?featured=true`,
+    {
+      cache: "no-store",
+    },
+  );
   if (!res.ok) {
     throw new Error("Failed to fetch featured tiles");
   }
@@ -21,7 +24,7 @@ export const getFeaturedTilesData = async () => {
 };
 
 export const getTileById = async (id) => {
-  const res = await fetch(`http://localhost:5000/tiles/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tiles/${id}`, {
     cache: "no-store",
   });
   if (!res.ok) {
