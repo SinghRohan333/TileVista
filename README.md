@@ -182,28 +182,39 @@ src/
 | `@heroui/react`        | ^3.1.0  | Component library              |
 | `@heroui/styles`       | ^3.1.0  | HeroUI base styles             |
 | `@gravity-ui/icons`    | ^2.18.0 | Icon set                       |
-| `@tailwindcss/postcss` | —       | Tailwind CSS v4 PostCSS plugin |
+| `react-icons`          | ^5.6.0  | Additional icon library        |
+| `tailwindcss`          | ^4      | Utility-first CSS framework    |
+| `@tailwindcss/postcss` | ^4      | Tailwind CSS v4 PostCSS plugin |
 
 ### Authentication
 
-| Package       | Version | Purpose                            |
-| ------------- | ------- | ---------------------------------- |
-| `better-auth` | —       | Authentication library             |
-| `mongoose`    | —       | MongoDB ODM for BetterAuth adapter |
+| Package                      | Version | Purpose                                   |
+| ---------------------------- | ------- | ----------------------------------------- |
+| `better-auth`                | ^1.6.18 | Authentication library with OAuth support |
+| `@better-auth/mongo-adapter` | ^1.6.18 | MongoDB adapter for BetterAuth            |
+| `mongodb`                    | ^7.3.0  | MongoDB driver                            |
 
 ### Forms & Validation
 
 | Package           | Version | Purpose                              |
 | ----------------- | ------- | ------------------------------------ |
-| `react-hook-form` | —       | Form state management and validation |
+| `react-hook-form` | ^7.79.0 | Form state management and validation |
 
-### Animation & UI
+### Animation & UX
 
 | Package              | Version | Purpose                               |
 | -------------------- | ------- | ------------------------------------- |
-| `swiper`             | —       | Touch slider for hero banner carousel |
-| `react-fast-marquee` | —       | Scrolling ticker/marquee component    |
-| `react-toastify`     | —       | Toast notification system             |
+| `swiper`             | ^12.2.0 | Touch slider for hero banner carousel |
+| `react-fast-marquee` | ^1.6.5  | Scrolling ticker/marquee component    |
+| `react-toastify`     | ^11.1.0 | Toast notification system             |
+
+### Dev Dependencies
+
+| Package                       | Version | Purpose                      |
+| ----------------------------- | ------- | ---------------------------- |
+| `eslint`                      | ^9      | Code linting                 |
+| `eslint-config-next`          | 16.2.9  | Next.js ESLint configuration |
+| `babel-plugin-react-compiler` | 1.0.0   | React compiler Babel plugin  |
 
 ---
 
